@@ -1,0 +1,281 @@
+        :root {
+            --primary-color: #6a1b9a;
+            --secondary-color: #4a148c;
+            --accent-color: #ffd700;
+            --text-color: #f3e5f5;
+            --card-width: 120px;
+            --card-height: 200px;
+            --bg-gradient: radial-gradient(circle at center, #4a148c 0%, #1a0033 100%);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none; /* Impede seleção de texto para sensação de app */
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-gradient);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* --- Header --- */
+        header {
+            text-align: center;
+            padding: 2rem 1rem;
+            animation: fadeIn 1.5s ease-in;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+            margin-bottom: 0.5rem;
+        }
+
+        p.subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* --- Main Game Area --- */
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 20px;
+        }
+
+        /* Telas (Start, Game, Loading) */
+        .screen {
+            display: none; /* Oculto por padrão */
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        .screen.active {
+            display: flex;
+        }
+
+        /* --- Botões --- */
+        .btn-magic {
+            background: linear-gradient(45deg, var(--accent-color), #ffca28);
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-top: 20px;
+        }
+
+        .btn-magic:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.7);
+        }
+
+        /* --- Área das Cartas --- */
+        #card-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap; /* Permite quebra de linha em mobile */
+            gap: 10px;
+            perspective: 1000px;
+            min-height: 300px;
+            width: 100%;
+        }
+
+        /* Estrutura da Carta */
+        .card-wrapper {
+            width: var(--card-width);
+            height: var(--card-height);
+            cursor: pointer;
+            position: relative;
+            transition: transform 0.3s ease, margin-top 0.3s ease;
+        }
+
+        .card-wrapper:hover {
+            transform: translateY(-20px); /* Levanta ao passar o mouse */
+            z-index: 10;
+        }
+
+        /* O container interno que faz o flip */
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+
+        /* Classe para virar a carta */
+        .card-wrapper.flipped .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        /* Quando uma carta é selecionada, as outras perdem opacidade */
+        .card-wrapper.dimmed {
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        /* Frente e Verso */
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid var(--accent-color);
+        }
+
+        /* Verso (Padrão Místico) */
+        .card-back {
+            background-color: #2a0a4a;
+            background-image: 
+                radial-gradient(circle, var(--accent-color) 1px, transparent 1px),
+                repeating-linear-gradient(45deg, rgba(255,215,0,0.1) 0, rgba(255,215,0,0.1) 1px, transparent 0, transparent 50%);
+            background-size: 10px 10px, 10px 10px;
+        }
+
+        /* Frente (Imagem) */
+        .card-front {
+            background-color: #fff;
+            color: #333;
+            transform: rotateY(180deg);
+            overflow: hidden;
+            flex-direction: column;
+        }
+
+        .card-front img {
+            width: 100%;
+            height: 70%;
+            object-fit: cover;
+        }
+
+        .card-front span {
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            color: var(--secondary-color);
+            padding: 0 5px;
+        }
+
+        /* --- Modal de Resultado --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+
+        .modal-overlay.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #4a148c, #7b1fa2);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 90%;
+            width: 400px;
+            border: 2px solid var(--accent-color);
+            box-shadow: 0 0 50px rgba(106, 27, 154, 0.8);
+            transform: scale(0.8);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .modal-overlay.open .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-card-image {
+            width: 150px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 3px solid var(--accent-color);
+            margin-bottom: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+
+        .modal-title {
+            color: var(--accent-color);
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            font-family: serif;
+        }
+
+        .modal-meaning {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            color: #fff;
+        }
+
+        /* --- Animações --- */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsividade para Mobile */
+        @media (max-width: 600px) {
+            :root {
+                --card-width: 80px;
+                --card-height: 130px;
+            }
+            
+            #card-container {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px;
+                padding-bottom: 100px; /* Espaço para scroll */
+            }
+
+            .card-wrapper:hover {
+                transform: none; /* Remove hover lift no mobile para evitar bugs de toque */
+            }
+
+            .modal-content {
+                padding: 1.5rem;
+            }
+            
+            .modal-card-image {
+                width: 100px;
+                height: 160px;
+            }
+        }

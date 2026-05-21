@@ -1,0 +1,28 @@
+/ (pasta do seu projeto)
+  ├── index.html       (Seu arquivo HTML)
+  ├── style.css        (Seu arquivo CSS)
+  ├── script.js        (Seu arquivo JavaScript)
+  └── img/             <--- PASTA COM ESSE NOME EXATO (img, não imagens)
+       ├── 0-oLouco.webp
+       ├── 1-oMagico.webp
+       ├── 2-aAltaSacerdotisa.jpg
+       ├── 3-aImperatriz
+       ├── 4-oImperador.webp
+       ├── 5-oHierofante.webp
+       ├── 6-osAmantes.webp
+       ├── 7-aCarruagem
+       ├── 8-Forca.webp
+       ├── 9-oEremita.webp
+       ├── 10-rodaDaFortuna.webp
+       ├── 11-justica.webp
+       ├── 12-oEnforcado.png
+       ├── 13-morte.webp
+       ├── 14-temperanca.webp
+       ├── 15-oDiabo.webp
+       ├── 16-aTorre.webp
+       ├── 17-aEstrela.webp
+       ├── 18-aLua.webp
+       ├── 19-oSol.jpg
+       ├── 20-julgamento.webp
+       ├── 21-oMundo.webp
+       └── ... (resto das imagens)

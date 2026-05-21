@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Oráculo das Estrelas</h1>
+        <p class="subtitle">Concentre-se em sua pergunta e escolha uma carta.</p>
+    </header>
+
+    <main>
+        <!-- Tela Inicial -->
+        <section id="start-screen" class="screen active">
+            <div style="text-align: center; max-width: 600px;">
+                <p style="margin-bottom: 20px; font-size: 1.1rem; line-height: 1.6;">
+                    O universo tem uma mensagem para você hoje.<br>
+                    Deixe sua intuição guiar sua mão. O destino aguarda sua escolha.
+                </p>
+                <button class="btn-magic" onclick="Game.start()">Revelar Meu Destino</button>
+            </div>
+        </section>
+
+        <!-- Tela do Jogo (Seleção) -->
+        <section id="game-screen" class="screen">
+            <p style="margin-bottom: 20px; color: var(--accent-color); font-size: 0.9rem;">Clique na carta que chamar sua atenção...</p>
+            <div id="card-container">
+                <!-- As cartas serão geradas via JS aqui -->
+            </div>
+            <button class="btn-magic" style="margin-top: 40px; font-size: 0.9rem; padding: 10px 20px;" onclick="Game.reset()">Embaralhar Novamente</button>
+        </section>
+    </main>
+
+    <!-- Modal de Resultado -->
+    <div id="result-modal" class="modal-overlay">
+        <div class="modal-content">
+            <img src="" alt="Carta Escolhida" id="modal-img" class="modal-card-image">
+            <h2 id="modal-title" class="modal-title">Nome da Carta</h2>
+            <p id="modal-desc" class="modal-meaning">Descrição do significado...</p>
+            <button class="btn-magic" onclick="Game.closeModal()">Fechar</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
