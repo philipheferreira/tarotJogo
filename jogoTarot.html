@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tarot Místico</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Tarot</h1>
+        <p class="subtitle">O universo fala através dos símbolos.</p>
+    </header>
+
+    <!-- Menu Simplificado (2 Botões) -->
+    <nav class="menu">
+        <a href="index.html">Sobre Tarot</a>
+        <a href="jogoTarot.html">Jogar as cartas</a>
+    </nav>
+
+    <main>
+        
+        <!-- PÁGINA 1: O JOGO -->
+        <section id="page-game" class="page active">
+            <!-- Tela Inicial -->
+            <div id="telaDeInicio" class="screen active">
+                <div style="text-align: center; max-width: 600px;">
+                    <p style="margin-bottom: 30px; font-size: 1.1rem; line-height: 1.6;">
+                        O universo tem uma mensagem para você hoje.<br>
+                        Deixe sua intuição guiar sua mão. O destino aguarda sua escolha.
+                    </p>
+                    <button class="btn-magic botaoIniciarJogoTarot">Revelar Seu Destino</button>
+                </div>
+            </div>
+
+            <!-- Tela do Jogo (Seleção) -->
+            <div id="telaDeJogo" class="screen">
+                <p style="margin-bottom: 20px; color: var(--accent-color); font-size: 0.9rem;">Clique na carta que chamar sua atenção...</p>
+                <div id="card-container">
+                    <!-- Cartas geradas via JS -->
+                </div>
+                <button class="btn-magic botaoResetarJogo" style="margin-top: 40px; font-size: 0.9rem; padding: 10px 20px;">Embaralhar Novamente</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal de Resultado (Apenas no jogo) -->
+    <div id="result-modal" class="modal-overlay">
+        <div class="modal-content">
+            <img src="" alt="Carta Escolhida" id="modal-img" class="modal-card-image">
+            <h2 id="tituloModal" class="modal-title">Nome da Carta</h2>
+            <p id="descricaoModal" class="modal-meaning">Descrição do significado...</p>
+            <button class="btn-magic fecharModal">Fechar</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

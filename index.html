@@ -1,48 +1,61 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title></title>
-	<link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tarot Místico</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+
     <header>
         <h1>Tarot</h1>
-        <p class="subtitle">Concentre-se em sua pergunta e escolha uma carta.</p>
+        <p class="subtitle">O universo fala através dos símbolos.</p>
     </header>
 
-    <main>
-        <!-- Tela Inicial -->
-        <section id="start-screen" class="screen active">
-            <div style="text-align: center; max-width: 600px;">
-                <p style="margin-bottom: 20px; font-size: 1.1rem; line-height: 1.6;">
-                    O universo tem uma mensagem para você hoje.<br>
-                    Deixe sua intuição guiar sua mão. O destino aguarda sua escolha.
-                </p>
-                <button class="btn-magic" onclick="Game.start()">Revelar Meu Destino</button>
+    <!-- Menu Simplificado (2 Botões) -->
+    <nav class="menu">
+        <a href="index.html">Sobre Tarot</a>
+        <a href="jogoTarot.html">Jogar as cartas</a>
+    </nav>
+
+    <main> 
+
+        <!-- PÁGINA 2: INFORMATIVO (História, Como Jogar e Lista de Cartas) -->
+        <section id="page-info" class="page">
+            <div class="info-content">
+                
+                <article>
+                    <h2>O que é o Tarot?</h2>
+                    <p>O Tarot é uma ferramenta milenar composta por 78 cartas, utilizada para reflexão, meditação e busca de autoconhecimento. Ele não prevê o futuro de forma fixa, mas oferece insights sobre o momento presente e as energias que cercam uma situação.</p>
+                </article>
+
+                <article>
+                    <h2>História e Origem</h2>
+                    <p>As origens exatas do Tarot são misteriosas, mas registros indicam seu surgimento na Europa no século XV, inicialmente como um jogo de nobres chamado "Tarocchini". Com o tempo, cartomantes e ocultistas começaram a usar as imagens simbólicas dos Arcanos Maiores para interpretações espirituais. O Tarot de Marselha é um dos mais antigos e populares até hoje.</p>
+                </article>
+
+                <article>
+                    <h2>Como Jogar?</h2>
+                    <ol>
+                        <li><strong>Concentre-se:</strong> Antes de começar, respire fundo e pense em uma pergunta ou apenas peça uma orientação geral para o dia.</li>
+                        <li><strong>Intuição:</strong> Não tente racionalizar. Olhe para as cartas viradas para baixo e veja qual delas "puxa" seu olhar ou sua energia.</li>
+                        <li><strong>Significado:</strong> A carta escolhida reflete um arquétipo ou energia que está ativa na sua vida agora.</li>
+                    </ol>
+                </article>
+
+                <article>
+                    <h2>O Baralho (Arcanos Maiores)</h2>
+                    <p>Conheça as 22 cartas utilizadas neste jogo e seus significados básicos:</p>
+                    
+                    <!-- Grid com todas as cartas gerado via JS -->
+                    <div id="all-cards-grid" class="card-grid"></div>
+                </article>
+
             </div>
         </section>
 
-        <!-- Tela do Jogo (Seleção) -->
-        <section id="game-screen" class="screen">
-            <p style="margin-bottom: 20px; color: var(--accent-color); font-size: 0.9rem;">Clique na carta que chamar sua atenção...</p>
-            <div id="card-container">
-                <!-- As cartas serão geradas via JS aqui -->
-            </div>
-            <button class="btn-magic" style="margin-top: 40px; font-size: 0.9rem; padding: 10px 20px;" onclick="Game.reset()">Embaralhar Novamente</button>
-        </section>
     </main>
-
-    <!-- Modal de Resultado -->
-    <div id="result-modal" class="modal-overlay">
-        <div class="modal-content">
-            <img src="" alt="Carta Escolhida" id="modal-img" class="modal-card-image">
-            <h2 id="modal-title" class="modal-title">Nome da Carta</h2>
-            <p id="modal-desc" class="modal-meaning">Descrição do significado...</p>
-            <button class="btn-magic" onclick="Game.closeModal()">Fechar</button>
-        </div>
-    </div>
 
     <script src="script.js"></script>
 </body>
